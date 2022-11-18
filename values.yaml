@@ -1,0 +1,90 @@
+# This file is a fake user values YAML file which is used
+# as the foundation of a meta schema for all cluster apps.
+# 
+# Please maintain comments, as they are just as important
+# as the YAML data.
+
+# Name of the cluster. Must be unique within the installation.
+name: ""
+
+# User-friendly description of the cluster's purpose etc.
+description: ""
+
+# Name of the organization owning the cluster.
+organization: ""
+
+# TODO: describe
+baseDomain: ""
+
+# Configuration related to the control plane (formerly
+# called master nodes) of the cluster.
+controlPlane:
+  # Number of control plane nodes.
+  replicas:
+
+# Everything related to networking.
+network:
+  podCidrBlocks: []
+  nodeCidrBlocks: []
+  serviceCidrBlocks: []
+
+# OIDC authentication settings.
+# TODO: Should this go under any of these instead?
+# - .apiServer
+# - .controlPlane
+oidc:
+  # Issuer URL used by the identity provider.
+  issuerUrl: ""
+
+  # Client ID of the OIDC client configured in the identity provider.
+  clientId: ""
+  
+  # TODO: describe
+  caFile: ""
+
+  # Optional configuration to adapt to ID token specifics.
+  claims:
+    userName: "user"
+    groups: "groups"
+
+
+# Configuration related to the bastion host,
+# used to access clusters via SSH.
+bastion:
+  # Number of bastion hosts.
+  replicas:
+
+# Node pools are groups of worker nodes with common
+# configuration. Their implementation differs among
+# cloud providers.
+nodePools:
+  -
+    # Name of the node pool.
+    name: ""
+
+    # User-friendly description of the node pool's purpose.
+    description: ""
+
+    # Number of nodes in the pool.
+    replicas:
+
+    # Minimum number of nodes.
+    minSize:
+
+    # Maximum number of nodes.
+    maxSize:
+
+    # Availability zones or similar covered by the node pool.
+    failureDomains: []
+
+# This section is for configuration that needs
+# provider-specific terminology or validation.
+# When adding a providers, please use
+# [a-z0-9] only for the name.
+providerSpecific:
+  aws: {}
+  azure: {}
+  clouddirector: {}
+  gcp: {}
+  openstack: {}
+  vsphere: {}
